@@ -45,17 +45,20 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                <li class="nav-item {{ setActivo('inicio') }}">
                         <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item {{ request()->is('nosotros') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/nosotros') }}">Nosotros</a>
+
+                    <li class="nav-item {{ setActivo('nosotros') }}">
+                        <a class="nav-link" href="{{url('/nosotros')}}">Nosotros</a>
                     </li>
-                    <li class="nav-item {{ request()->is('servicios') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/servicios') }}">Servicios</a>
+
+                    <li class="nav-item {{ setActivo('servicios') }}">
+                        <a class="nav-link" href="{{url('/servicios')}}">Servicios</a>
                     </li>
-                    <li class="nav-item {{ request()->is('contacto') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
+
+                    <li class="nav-item {{ setActivo('contacto') }}">
+                        <a class="nav-link" href="{{url('/contacto')}}">Contacto</a>
                     </li>
                 </ul>
                 <!-- Aquí podrías agregar un formulario de búsqueda, por ejemplo -->
