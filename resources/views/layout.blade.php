@@ -71,7 +71,7 @@
         </div>
     </nav>
 
-    <h1>Home</h1>
+    <h1></h1>
     <table class="table">
         <thead class="table table-bordered"></thead>
         <tbody>

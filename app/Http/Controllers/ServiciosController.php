@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Servicio;
+use App\Http\Requests\CreateServicioRequest;
 
 class ServiciosController extends Controller
 {
@@ -15,12 +16,22 @@ class ServiciosController extends Controller
         return view('servicios', compact('servicios'));
     }
 
-public function show($id){
+    public function show($id){
         return view('show',[
-            'servicio' => Servicio::find($id)
+            'servicios' => Servicio::find($id)
         ]);
     }
     
-    
-    //
+    public function create(){
+        return view('create');
+    }
+
+    public function store(CreateServicioRequest $request){ 
+
+
+        servicio::create($request->validated());
+
+        return redirect()->route('servicios.index');
+    }
+    //   
 }

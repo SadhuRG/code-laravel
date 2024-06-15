@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Servicio | ' . $servicio->titulo)
+@section('title', 'Servicio | ' . $servicios->titulo)
 
 @section('content')
 <h1>{{ $servicio->titulo }}</h1>
