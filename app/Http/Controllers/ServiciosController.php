@@ -23,7 +23,9 @@ class ServiciosController extends Controller
     }
     
     public function create(){
-        return view('create');
+        return view('create',[
+            'servicios'=>new Servicio
+        ]);
     }
 
     public function store(CreateServicioRequest $request){ 
@@ -40,11 +42,14 @@ class ServiciosController extends Controller
         ]);
     }
 
-    public function update(servicio $id){ 
-        $id->update([
-            'titulo'=> request('titulo'),
-            'description'=> request('description'),
-        ]);
+    public function update(Servicio $servicio, CreateServicioRequest $request){ 
+        $servicio->update($request->validated());
+        return redirect()->route('servicios.show',$id);
+    }
+
+    public function destroy(Servicio $servicio){ 
+        $servicio->delete();
+        return redirect()->route('servicios.index');
     }
     //   
 }
