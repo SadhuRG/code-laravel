@@ -44,7 +44,7 @@ class ServiciosController extends Controller
 
     public function update(Servicio $servicio, CreateServicioRequest $request){ 
         $servicio->update($request->validated());
-        return redirect()->route('servicios.show',$id);
+        return redirect()->route('servicios.index',$servicio);
     }
 
     public function destroy(Servicio $servicio){ 

@@ -19,7 +19,7 @@ Route::get('servicios/create','App\Http\Controllers\ServiciosController@create')
 
 Route::get('servicios/{id}/editar','App\Http\Controllers\ServiciosController@edit')->name('servicios.edit');
 
-Route::patch('servicios/{id}','App\Http\Controllers\ServiciosController@update')->name('servicios.update');
+Route::patch('servicios/{servicio}','App\Http\Controllers\ServiciosController@update')->name('servicios.update');
 
 Route::post('servicios','App\Http\Controllers\ServiciosController@store')->name('servicios.store');
 
