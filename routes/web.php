@@ -27,6 +27,14 @@ Route::get('servicios/{id}','App\Http\Controllers\ServiciosController@show')->na
 
 Route::delete('servicios/{servicio}','App\Http\Controllers\ServiciosController@destroy')->name('servicios.destroy');
 
+Route::post('contacto','App\Http\Controllers\ContactoController@store');
+
 Route::view('contacto','contacto')->name('contacto');
+
+
+
+
+
+
 
 //
