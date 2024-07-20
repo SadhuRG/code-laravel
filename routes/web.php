@@ -12,29 +12,13 @@ $servicios = [/*
 
 
 Route::view('/','home')->name('home');
+
 Route::view('nosotros','nosotros')->name('nosotros');
-Route::get('servicios','App\Http\Controllers\ServiciosController@index')->name('servicios.index');
 
-Route::get('servicios/create','App\Http\Controllers\ServiciosController@create')->name('servicios.create');
-
-Route::get('servicios/{id}/editar','App\Http\Controllers\ServiciosController@edit')->name('servicios.edit');
-
-Route::patch('servicios/{servicio}','App\Http\Controllers\ServiciosController@update')->name('servicios.update');
-
-Route::post('servicios','App\Http\Controllers\ServiciosController@store')->name('servicios.store');
-
-Route::get('servicios/{id}','App\Http\Controllers\ServiciosController@show')->name('servicios.show');
-
-Route::delete('servicios/{servicio}','App\Http\Controllers\ServiciosController@destroy')->name('servicios.destroy');
+Route::resource('servicios','App\Http\Controllers\ServiciosController')->names('servicios');
 
 Route::post('contacto','App\Http\Controllers\ContactoController@store');
 
 Route::view('contacto','contacto')->name('contacto');
 
-
-
-
-
-
-
-//
+Auth::routes(['register'=>true]);

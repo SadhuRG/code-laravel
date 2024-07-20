@@ -33,7 +33,7 @@ class ServiciosController extends Controller
 
         servicio::create($request->validated());
 
-        return redirect()->route('servicios.index');
+        return redirect()->route('servicios.index')->with('estado','El servicio fue creado correctamente');
     }
 
     public function edit(servicio $id){ 
@@ -44,12 +44,18 @@ class ServiciosController extends Controller
 
     public function update(Servicio $servicio, CreateServicioRequest $request){ 
         $servicio->update($request->validated());
-        return redirect()->route('servicios.index',$servicio);
+        return redirect()->route('servicios.index',$servicio)->with('estado','El servicio fue actualizado correctamente');
     }
 
     public function destroy(Servicio $servicio){ 
         $servicio->delete();
-        return redirect()->route('servicios.index');
+        return redirect()->route('servicios.index')->with('estado','El servicio fue eliminado correctamente');
     }
-    //   
+    //  
+
+    public function __construct(){ 
+        $this->middleware('auth')->except('index','show');
+    }
+    
+
 }
