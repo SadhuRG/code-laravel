@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Servicio;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreateServicioRequest;
 
 class ServiciosController extends Controller
@@ -12,7 +13,7 @@ class ServiciosController extends Controller
     public function index()
 
     {
-        $servicios = Servicio::orderBy('titulo','asc')->get();
+        $servicios = Servicio::get();
         return view('servicios', compact('servicios'));
     }
 
@@ -30,25 +31,39 @@ class ServiciosController extends Controller
 
     public function store(CreateServicioRequest $request){ 
 
-
-        servicio::create($request->validated());
+        $servicio = new Servicio($request->validated());
+        $servicio->image = $request->file('image')->store('images');
+        $servicio->save();
 
         return redirect()->route('servicios.index')->with('estado','El servicio fue creado correctamente');
     }
 
-    public function edit(servicio $id){ 
+    public function edit(servicio $servicio){ 
         return view('edit',[
-                'servicios'=>$id
+                'servicios'=>$servicio
         ]);
     }
 
-    public function update(Servicio $servicio, CreateServicioRequest $request){ 
-        $servicio->update($request->validated());
+    public function update(Servicio $servicio, CreateServicioRequest $request){
+
+        if($request->hasFile('image')){
+           Storage::delete($servicio->image);
+           $servicio->fill($request-validated());
+           $servicio->image = $request->file('image')->store('images');
+           $servicio->save();
+        } else {
+            $servicio->update( array_filter($request->validated()) );
+        }
+
         return redirect()->route('servicios.index',$servicio)->with('estado','El servicio fue actualizado correctamente');
     }
 
     public function destroy(Servicio $servicio){ 
+
+        Storage::delete($servicio->image);
+
         $servicio->delete();
+        
         return redirect()->route('servicios.index')->with('estado','El servicio fue eliminado correctamente');
     }
     //  

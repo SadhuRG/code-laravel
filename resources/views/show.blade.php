@@ -5,6 +5,9 @@
 @section('content')
 
 @auth
+
+<td><img src="/storage/{{ $servicios->image }}" alt="{{ $servicios->titulo }}" width="100" height="50"></td>
+
 <h1 style="color: #007bff; font-size: 40px; font-weight: normal;">{{ $servicios->titulo }}</h1>
 
 <a href="{{ route('servicios.edit', $servicios) }}" style="display: inline-block; padding: 8px 16px; background-color: red; color: white; border: 2px solid black; border-radius: 20px; text-decoration: none; text-align: center; font-size: 20px; margin-right: 20px;">Editar</a>

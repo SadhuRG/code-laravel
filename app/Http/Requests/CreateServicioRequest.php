@@ -21,18 +21,20 @@ class CreateServicioRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'titulo' => 'required',
-            'description' => 'required'
-            //
-        ];
+            $imageRule = $this->route('servicio') ? 'nullable' : 'required';
+            return [
+                'titulo' => 'required',
+                'description' => 'required',
+                'image' => [$imageRule, 'mimes:jpeg,png'],
+            ];
     }
 
     public function messages(): array
     {
         return [
             'titulo.required' => 'Se nesesita un titulo para el servicio',
-            'description.required' => 'Se nesesita un descripcion, es nesesaria'
+            'description.required' => 'Se nesesita un descripcion, es nesesaria',
+            'image.required' => 'Se debe seleccionar una imagen con formato jpeg o png'
             //
         ];
     }
